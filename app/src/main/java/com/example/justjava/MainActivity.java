@@ -23,6 +23,12 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     *Declare Global Variables Here
+     */
+
+    int quantity = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the Increment/Plus button is clicked
      */
     public void increment(View view) {
-        int quantity = 2;
         quantity++;
         display(quantity);
     }
@@ -42,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the Decrement/Minus button is clicked
      */
     public void decrement(View view)  {
-        int quantity = 1;
-        quantity--;
-        display(quantity);
+        if (quantity>0) {
+            quantity--;
+            display(quantity);
+        }
     }
 
     /**
