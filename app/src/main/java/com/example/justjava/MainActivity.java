@@ -33,10 +33,8 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the Increment/Plus button is clicked
      */
     public void increment(View view) {
-        int quantity = 3;
-        quantity = 3;
-        quantity = 4;
-        quantity = 5;
+        int quantity = 2;
+        quantity++;
         display(quantity);
     }
 
