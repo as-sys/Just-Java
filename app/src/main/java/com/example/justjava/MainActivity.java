@@ -10,13 +10,9 @@ package com.example.justjava;
 
 
 import android.os.Bundle;
-<<<<<<< HEAD
-import androidx.appcompat.app.AppCompatActivity;
-=======
 
 import androidx.appcompat.app.AppCompatActivity;
 
->>>>>>> Development-MergeHereBeforeProduction
 import android.view.View;
 import android.widget.TextView;
 
@@ -76,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
          * This method displays the given price on the screen.
          */
     }
-        private void displayPrice ( int number){
-            TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-            priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-        }
+    private void displayPrice ( int number){
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
 
 }
