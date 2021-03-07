@@ -45,7 +45,6 @@
             android:layout_height="48dp"
             android:text="+"
             android:onClick="increment"/>
-
     </LinearLayout>
 
 
