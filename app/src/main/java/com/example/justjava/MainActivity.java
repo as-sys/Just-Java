@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity * 5;
+        int price = calculatePrice();
         String priceMessage = "thank you for ordering" + quantity + "coffees! \n Amount Due: $" + price; //I used the escape key\n
         priceMessage = priceMessage + "\n\nYour order will be right up!";
         displayMessage(priceMessage);
-        calculatePrice(quantity, 10);
+        calculatePrice();
     }
 
 
@@ -74,13 +74,18 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(message);
     }
 
-    /**
-     * Calculates the price of the order.
-     *
-     * @param quantity is the number of cups of coffee ordered
-     * @param pricePerCup tells us hte price per cup of coffee
-     */
-    private void calculatePrice(int quantity, int pricePerCup){
-        int price = quantity * pricePerCup;
-    }
+/**
+ * Calculates the price of the order.
+ * @param quantity is the number of cups of coffee ordered
+ * @param pricePerCup tells us hte price per cup of coffee
+ * @return total price
+ * /
 
+private int calculatePrice(){
+int price = quantity * 5;
+return price;
+}
+
+
+
+}
