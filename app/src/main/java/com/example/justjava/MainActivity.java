@@ -10,7 +10,10 @@ import java.text.NumberFormat;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 /**
  * This app displays an order form to order coffee.
@@ -30,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method has the quantity increase
-     * @param view
+     * This method is called when the Increment/Plus button is clicked
      */
 
     public void increment(View view) {
@@ -40,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method allows for the quantity to be decreased but limits it to having to be greater or equal to 0 as its lowest quantity
-     * @param view
+     * This method is called when the Decrement/Minus button is clicked
      */
 
     public void decrement(View view){
@@ -55,18 +56,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked.
      */
-    public void submitOrder(View view) {
-        int price = calculatePrice();
-        String priceMessage = "Thank you for ordering " + quantity + " Coffees! \nAmount Due: $" + price; //I used an escape sequence \" to include the quotes around free
-        priceMessage = priceMessage + "\n\nYour order will be right up!"; //Double \n escape key for w line separation
-        displayMessage(priceMessage);
+    public void sumbitOrder(View view) {
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        Log.v("MainActivity", "has whipped cream: " + hasWhippedCream);
 
-        calculatePrice();
+        int price  = calculatePrice();
+        String priceMessage = createOrderSummary(price, hasWhippedCream);
+        displayMessage(priceMessage);
     }
 
 
     /**
      * Calculates the price of the order.
+     *
      * @return total price
      */
     private int calculatePrice() {
@@ -74,6 +77,20 @@ public class MainActivity extends AppCompatActivity {
         return price;
     }
 
+    /**
+     * create a summary of our order
+     *
+     * @param price of the order
+     * @param addWhippedCream is whether or not the user wants whipped cream topping
+     * @return pricMessage
+     */
+private String createOrderSummary(int price, boolean addWhippedCream) {
+    String priceMessage = "Thank you for ordering " + quantity + " Coffees!";  //I used the escape key \n to put info on a new line
+    priceMessage += "\nAdd Whipped Cream? " + addWhippedCream;
+    priceMessage += "\nAmount Due: %" + price;
+    priceMessage += "\n\nYour order will be right up!"; //Double \n escape key for w line separation
+    return priceMessage;
+}
 
 
     /**
@@ -91,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
 
     }
