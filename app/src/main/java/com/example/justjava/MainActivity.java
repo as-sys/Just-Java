@@ -57,12 +57,20 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void sumbitOrder(View view) {
+        // Figure out if user wants Whipped Cream
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         Log.v("MainActivity", "has whipped cream: " + hasWhippedCream);
 
+        //Figure out if user wants Chocolate topping
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        // Calculates Price
         int price  = calculatePrice();
-        String priceMessage = createOrderSummary(price, hasWhippedCream);
+
+        // Display the order summary on the screen
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
         displayMessage(priceMessage);
     }
 
@@ -84,9 +92,10 @@ public class MainActivity extends AppCompatActivity {
      * @param addWhippedCream is whether or not the user wants whipped cream topping
      * @return pricMessage
      */
-private String createOrderSummary(int price, boolean addWhippedCream) {
+private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
     String priceMessage = "Thank you for ordering " + quantity + " Coffees!";  //I used the escape key \n to put info on a new line
     priceMessage += "\nAdd Whipped Cream? " + addWhippedCream;
+    priceMessage += "\nAdd Chocolate Topping " + addChocolate;
     priceMessage += "\nAmount Due: %" + price;
     priceMessage += "\n\nYour order will be right up!"; //Double \n escape key for w line separation
     return priceMessage;
