@@ -7,6 +7,7 @@
 package com.example.justjava;
 
 import java.text.NumberFormat;
+import java.util.jar.Attributes;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 /**
  * This app displays an order form to order coffee.
@@ -56,7 +58,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked.
      */
-    public void sumbitOrder(View view) {
+    public void submitOrder(View view) {
+        //Get text from the EditText XML
+        EditText nameField = (EditText) findViewById(R.id.name_field);
+        String name = nameField.getText().toString();
+        Log.v("MainActivity", "Name: " + name);
+
         // Figure out if user wants Whipped Cream
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
@@ -96,8 +103,8 @@ private String createOrderSummary(int price, boolean addWhippedCream, boolean ad
     String priceMessage = "Name: Andrew Gowan";
     priceMessage += "\nThank you for ordering " + quantity + " Coffees!";  //I used the escape key \n to put info on a new line
     priceMessage += "\nAdd Whipped Cream? " + addWhippedCream;
-    priceMessage += "\nAdd Chocolate Topping " + addChocolate;
-    priceMessage += "\nAmount Due: %" + price;
+    priceMessage += "\nAdd Chocolate Topping> " + addChocolate;
+    priceMessage += "\nAmount Due: $" + price;
     priceMessage += "\n\nYour order will be right up!"; //Double \n escape key for w line separation
     return priceMessage;
 }
